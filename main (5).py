@@ -1,33 +1,25 @@
-class BankAccount:
-    def __init__(self, account_number, account_holder_name, initial_balance=0.0):
-        self.__account_number = account_number
-        self.__account_holder_name = account_holder_name
-        self.__account_balance = initial_balance
+def sort_students(student_list):
+    # Sort the student list based on CGPA in descending order
+    sorted_students = sorted(student_list, key=lambda x: x.cgpa, reverse=True)
+    return sorted_students
 
-    def deposit(self, amount):
-        if amount > 0:
-            self.__account_balance += amount
-            return f"Deposited ${amount}. New balance: ${self.__account_balance}"
-        else:
-            return "Deposit amount must be greater than zero."
+# Define the Student class
+class Student:
+    def __init__(self, name, roll_number, cgpa):
+        self.name = name
+        self.roll_number = roll_number
+        self.cgpa = cgpa
 
-    def withdraw(self, amount):
-        if amount > 0 and self.__account_balance >= amount:
-            self.__account_balance -= amount
-            return f"Withdrew ${amount}. New balance: ${self.__account_balance}"
-        elif amount <= 0:
-            return "Withdrawal amount must be greater than zero."
-        else:
-            return "Insufficient funds for withdrawal."
+# Test the function with a list of student objects
+students = [
+    Student("Alice", "A101", 3.8),
+    Student("Bob", "B102", 3.6),
+    Student("Charlie", "C103", 3.9),
+    Student("David", "D104", 3.5),
+]
 
-    def display_balance(self):
-        return f"Account balance for {self.__account_holder_name}: ${self.__account_balance}"
+sorted_students = sort_students(students)
 
-
-my_account = BankAccount("12345", "John Doe", 1000.0)
-
-
-print(my_account.display_balance())
-print(my_account.deposit(500))
-print(my_account.withdraw(200))
-print(my_account.withdraw(1500))
+# Print the sorted list of students
+for student in sorted_students:
+    print(f"Name: {student.name}, Roll Number: {student.roll_number}, CGPA: {student.cgpa}")
